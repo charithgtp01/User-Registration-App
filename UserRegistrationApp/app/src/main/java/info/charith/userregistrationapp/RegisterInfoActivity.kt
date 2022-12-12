@@ -16,6 +16,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.material.imageview.ShapeableImageView
+import info.charith.userregistrationapp.Utils.initiateInputTextWithIcon
 
 class RegisterInfoActivity : AppCompatActivity() {
 
@@ -36,7 +37,7 @@ class RegisterInfoActivity : AppCompatActivity() {
     }
 
     fun init() {
-        etName = Utils.initiateInputTextWithIcon(
+        etName = initiateInputTextWithIcon(
             findViewById(R.id.nameLayout),
             getString(R.string.name),
             R.mipmap.name

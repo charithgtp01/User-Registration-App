@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.imageview.ShapeableImageView
+import info.charith.userregistrationapp.Utils.initiateInputTextWithIcon
 import info.charith.userregistrationapp.Utils.initiateTextViewWithIcon
 
 
