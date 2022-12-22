@@ -32,30 +32,30 @@ class RegisterInfoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_info)
-
         init()
     }
 
-    fun init() {
+    //UI Initiating Method
+    private fun init() {
         etName = initiateInputTextWithIcon(
             findViewById(R.id.nameLayout),
             getString(R.string.name),
             R.mipmap.name
         )
 
-        etEmail = Utils.initiateInputTextWithIcon(
+        etEmail = initiateInputTextWithIcon(
             findViewById(R.id.emailLayout),
             getString(R.string.email),
             R.mipmap.mail
         )
 
-        etAge = Utils.initiateInputTextWithIcon(
+        etAge = initiateInputTextWithIcon(
             findViewById(R.id.ageLayout),
             getString(R.string.age),
             R.mipmap.age
         )
 
-        etTelephoneNumber = Utils.initiateInputTextWithIcon(
+        etTelephoneNumber = initiateInputTextWithIcon(
             findViewById(R.id.contactLayout),
             getString(R.string.phonenumber),
             R.mipmap.phone
@@ -66,7 +66,7 @@ class RegisterInfoActivity : AppCompatActivity() {
         profileImage = findViewById(R.id.imageView)
 
         buttonEdit.setOnClickListener {
-//check runtime permission
+            //check runtime permission
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) ==
                     PackageManager.PERMISSION_DENIED
@@ -132,10 +132,12 @@ class RegisterInfoActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE) {
             profileImage.setImageURI(data?.data)
+            //Set Image Uri to the User object
             user.profilePictureUri = data?.data.toString()
         }
     }
 
+    //Submit Button Click Method
     private fun submit() {
         val name = etName.text.toString()
         val email = etEmail.text.toString()
@@ -143,8 +145,7 @@ class RegisterInfoActivity : AppCompatActivity() {
         val phoneNumber = etTelephoneNumber.text.toString()
         val profilePictureUri = user.profilePictureUri;
 
-
-        //If else use for binary operations
+        //Validating Empty Fields
         when {
             name.isBlank() -> {
                 etName.error = "Invalid Name"
@@ -168,6 +169,7 @@ class RegisterInfoActivity : AppCompatActivity() {
                 user.phoneNumber = phoneNumber
                 user.profilePictureUri = profilePictureUri
 
+                //Navigate to Profile Activity with User Object
                 var intent = Intent(this, ProfileActivity::class.java);
                 intent.putExtra(Constants.OBJECT, user)
                 startActivity(intent)

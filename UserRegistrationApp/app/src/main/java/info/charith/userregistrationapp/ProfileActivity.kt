@@ -10,16 +10,17 @@ import info.charith.userregistrationapp.Utils.initiateTextViewWithIcon
 
 
 class ProfileActivity : AppCompatActivity() {
+    //Round Shaped Image View
     private lateinit var profileImage: ShapeableImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
-
-
         init()
     }
 
-    fun init() {
+    //UI Initiating Method
+    private fun init() {
         profileImage = findViewById(R.id.imageView)
 
         val bundle: Bundle? = intent.extras
@@ -27,6 +28,7 @@ class ProfileActivity : AppCompatActivity() {
             //Parcelable Data
             val user: User? = this?.getParcelable(Constants.OBJECT)
             if (user != null) {
+
                 initiateTextViewWithIcon(
                     findViewById(R.id.nameLayout),
                     getString(R.string.name),
@@ -58,18 +60,19 @@ class ProfileActivity : AppCompatActivity() {
                 }
 
                 profileImage.setImageURI(Uri.parse(user.profilePictureUri))
-
             }
         }
 
     }
 
+    //Open Dialer Method with auto generated number
     private fun call(number: String) {
         val intent = Intent(Intent.ACTION_DIAL)
         intent.data = Uri.parse("tel:$number")
         startActivity(intent)
     }
 
+    //Email picker Method
     private fun sendEmail(email: String) {
         val intent = Intent(Intent.ACTION_SEND)
         val recipients = arrayOf(email)

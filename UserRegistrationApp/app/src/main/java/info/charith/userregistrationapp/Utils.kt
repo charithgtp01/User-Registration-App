@@ -9,8 +9,14 @@ import android.widget.TextView
 
 object Utils {
 
+    /**
+     * Common method to Initiate Input Field
+     * @param view Parent view element of the activity
+     * @param hintString EditText Hint value
+     * @param iconRes Icon Resource value
+     * @return Initiated EditText
+     */
     fun initiateInputTextWithIcon(view: View, hintString: String?, iconRes: Int): EditText {
-
         val editText: EditText = view.findViewById(R.id.content)
         val icon: ImageView = view.findViewById(R.id.icon)
         val hint: TextView = view.findViewById(R.id.hint)
@@ -19,6 +25,14 @@ object Utils {
         return editText
     }
 
+    /**
+     * Common method to Initiate Text Field
+     * @param view Parent view element of the activity
+     * @param hintString TextView Label value
+     * @param contentString TextView Content value
+     * @param iconRes Icon Resource value
+     * @param listener Handler for field click event
+     */
     fun initiateTextViewWithIcon(
         view: View,
         hintString: String?,
@@ -35,6 +49,11 @@ object Utils {
         view.setOnClickListener { listener.onClick(view) }
     }
 
+    /**
+     * Commont method to Show Alert Dialog
+     * @param context Context of the activity
+     * @param message Dialog Message
+     */
     fun showDialog(context: Context?, message: String?) {
         AlertDialog.Builder(context)
             .setMessage(message) // Specifying a listener allows you to take an action before dismissing the dialog.
@@ -42,7 +61,7 @@ object Utils {
             .setPositiveButton(
                 android.R.string.yes
             ) { _, _ ->
-                // Continue with delete operation
+
             }
             .setIcon(android.R.drawable.ic_dialog_alert)
             .show()
