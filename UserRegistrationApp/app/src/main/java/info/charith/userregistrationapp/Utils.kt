@@ -53,11 +53,13 @@ object Utils {
      * Commont method to Show Alert Dialog
      * @param context Context of the activity
      * @param message Dialog Message
+     * Specifying a listener allows you to take an action before dismissing the dialog.
+       The dialog is automatically dismissed when a dialog button is clicked.
      */
     fun showDialog(context: Context?, message: String?) {
         AlertDialog.Builder(context)
-            .setMessage(message) // Specifying a listener allows you to take an action before dismissing the dialog.
-            // The dialog is automatically dismissed when a dialog button is clicked.
+            .setMessage(message)
+
             .setPositiveButton(
                 android.R.string.yes
             ) { _, _ ->
